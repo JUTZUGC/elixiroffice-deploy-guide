@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "elixiroffice-guide": {
+      "command": "node",
+      "args": [
+        "mcp-server.mjs"
+      ]
+    }
+  }
+}

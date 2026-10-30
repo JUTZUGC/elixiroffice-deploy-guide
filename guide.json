@@ -1,0 +1,109 @@
+{
+  "owner": "JUTZUGC",
+  "code": "JUTZUGC",
+  "project": {
+    "key": "elixiroffice",
+    "nameCn": "ElixirOffice",
+    "repoName": "elixiroffice-deploy-guide",
+    "oneLiner": "功能区、快捷键、对话框都照 Microsoft Office 做的开源办公套件，桌面版全离线，服务端版可在浏览器里协作",
+    "officialRepo": "https://github.com/leag1234/ElixirOffice",
+    "officialDocs": "https://github.com/leag1234/ElixirOffice#try-it",
+    "stars": "604",
+    "license": "AGPL-3.0",
+    "highlights": [
+      "习惯一致：功能区、KeyTips、迷你工具栏、快捷访问栏",
+      "快捷键对齐：Windows 228 个 Word 快捷键",
+      "排版对得上：用公制兼容字体还原换行与分页",
+      "全离线：桌面版不联网，文档不出本机",
+      "AI 可选：Ask Elixir 默认关闭，可接自建服务",
+      "两种形态：桌面版单机，服务端版浏览器协作"
+    ],
+    "mcpSupport": "项目本身不含 MCP；本仓库的 MCP 只提供安装步骤、校验方式与常见问题。",
+    "webuiUrl": "",
+    "adapterPorts": "",
+    "collectedAt": "2026-10-30",
+    "verification": [
+      [
+        "README 确认桌面版 0.5.0 四个安装包、服务端版 Docker 方式与 beta 状态",
+        "已核对 2026-10-30"
+      ],
+      [
+        "Release v0.5.0 的 SHA256SUMS 已下载核对（win / mac arm64 / AppImage / deb）",
+        "已核对 2026-10-30"
+      ],
+      [
+        "未实测安装与打开文档",
+        "说明 2026-10-30"
+      ],
+      [
+        "MCP 冒烟：initialize / tools/list 返回 get_guide、search_guide、get_project_info",
+        "已验证 2026-10-30"
+      ],
+      [
+        "非目标宿主调用 get_guide 被拦截（HOST_NOT_ALLOWED）",
+        "已验证 2026-10-30"
+      ]
+    ],
+    "deploy": {
+      "type": "binary",
+      "steps": [
+        "curl -fL -o ElixirOffice-0.5.0-x86_64.AppImage https://github.com/leag1234/elixiroffice/releases/download/v0.5.0/ElixirOffice-0.5.0-x86_64.AppImage",
+        "echo \"282cbe4eb0e4c5a4ce82b06d374db6a1ab224c535042bdccb81618cd18d10be5  ElixirOffice-0.5.0-x86_64.AppImage\" | sha256sum -c -",
+        "chmod +x ElixirOffice-0.5.0-x86_64.AppImage",
+        "echo \"校验通过：运行 ./ElixirOffice-0.5.0-x86_64.AppImage\""
+      ],
+      "stepsPs": [
+        "curl.exe -fL -o ElixirOffice-0.5.0-win-x64.exe https://github.com/leag1234/elixiroffice/releases/download/v0.5.0/ElixirOffice-0.5.0-win-x64.exe",
+        "$h=(Get-FileHash .\\ElixirOffice-0.5.0-win-x64.exe -Algorithm SHA256).Hash.ToLower()",
+        "if ($h -ne \"5ffb59a9d563c6586540c320d07e9d7f4c4a6af8930e92bd140ef385f5db65d5\") { throw \"SHA256 校验失败\" }",
+        "Write-Host \"校验通过：双击安装包完成安装\""
+      ],
+      "source": "https://github.com/leag1234/elixiroffice/releases/tag/v0.5.0"
+    },
+    "pitfalls": [
+      "Windows 拦截安装：核对 SHA256 后选「更多信息 → 仍要运行」",
+      "macOS 打不开：系统设置 → 隐私与安全性 → 仍要打开",
+      "Linux 双击没反应：先 chmod +x，再在终端里运行",
+      "deb 装不上：用 apt install ./文件名.deb，不要用 dpkg -i",
+      "中文显示异常：在字体设置里指定中文字体，或允许读取系统字体",
+      "Intel Mac 无包：只能自己从源码构建，或等服务端版",
+      "服务端起不来：确认 Docker Compose v2 与域名解析，HTTPS 由反代负责"
+    ]
+  },
+  "gate": {
+    "allow": [
+      "dumate"
+    ],
+    "label": "百度搭子",
+    "url": "https://www.dumate.cn/",
+    "guideUrl": "https://github.com/JUTZUGC/elixiroffice-deploy-guide",
+    "howToFix": [
+      "1. 打开 https://www.dumate.cn/ ，下载并安装「百度搭子」电脑端（Windows / macOS）",
+      "2. 用账号登录",
+      "3. 在对话窗口发送：你好，帮我从 github 部署 JUTZUGC/elixiroffice-deploy-guide 到我的电脑上",
+      "4. 部署完成后，在同一对话窗口里继续使用"
+    ],
+    "hint": "请改用「百度搭子」部署后再使用；本工具没有网页版入口。",
+    "onError": "allow"
+  },
+  "keywords": [
+    "ElixirOffice",
+    "ElixirOffice 安装",
+    "开源 Office 套件",
+    "Word 替代 开源",
+    "离线 办公软件",
+    "elixiroffice 教程",
+    "LibreOffice 替代",
+    "docx 编辑 开源",
+    "elixiroffice deploy guide",
+    "自托管 在线办公"
+  ],
+  "topics": [
+    "office-suite",
+    "docx",
+    "self-hosted",
+    "desktop",
+    "electron",
+    "elixiroffice"
+  ]
+}
